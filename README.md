@@ -18,9 +18,12 @@ It utilizes a [fuzzy search](https://github.com/ktr0731/go-fuzzyfinder), [GitHub
 
 ## Design
 
-1. A main function for running at the cli
-2. A function for pulling gitignores and storing them
+1. A main function for running at the cli:
+2. A function for pulling gitignores and storing them:
    1. Includes versioning
    2. Stores locally
    3. Works with latest when offline
    4. cli ships with latest version and cli update command checks and pulls new versions
+3. A function for writing gitignore files:
+   1. It will mod/alert if existing `.gitignore` is present
+   2. It can be run in append only
