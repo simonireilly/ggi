@@ -1,4 +1,4 @@
-package gogitignoreit
+package gitignore
 
 import (
 	"fmt"
@@ -25,7 +25,7 @@ var gitignores = []gitignore{
 	{"Root", "Node", "2019-06-16"},
 }
 
-func main() {
+func GitIgnoreIt() {
 	idx, err := fuzzyfinder.FindMulti(
 		gitignores,
 		func(i int) string {
