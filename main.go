@@ -1,4 +1,4 @@
-package gogitignoreit
+package main
 
 import (
 	"fmt"
