@@ -1,18 +1,29 @@
-# Binaries for programs and plugins
-*.exe
-*.exe~
-*.dll
-*.so
-*.dylib
+*.annot
+*.cmo
+*.cma
+*.cmi
+*.a
+*.o
+*.cmx
+*.cmxs
+*.cmxa
 
-# Test binary, built with `go test -c`
-*.test
+# ocamlbuild working directory
+_build/
 
-# Output of the go coverage tool, specifically when used with LiteIDE
-*.out
+# ocamlbuild targets
+*.byte
+*.native
 
-# Dependency directories (remove the comment below to include it)
-vendor/
+# oasis generated files
+setup.data
+setup.log
 
-# Don't include VS Code
-.vscode
+# Merlin configuring file for Vim and Emacs
+.merlin
+
+# Dune generated files
+*.install
+
+# Local OPAM switch
+_opam/
