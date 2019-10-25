@@ -12,7 +12,5 @@
 *.out
 
 # Dependency directories (remove the comment below to include it)
-vendor/
-
-# Don't include VS Code
-.vscode
+# vendor/
+-packr.go
