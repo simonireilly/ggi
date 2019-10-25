@@ -32,6 +32,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
+    - name: Get Packr
+      run: go get -u github.com/gobuffalo/packr/packr
+
     - name: Pack with gitignores
       run: packr build -v -o gitignore .
 
