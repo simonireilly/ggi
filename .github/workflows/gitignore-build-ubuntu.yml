@@ -2,8 +2,8 @@ name: Go
 on: [push]
 jobs:
 
-  build:
-    name: Build
+  test:
+    name: Test
     runs-on: ubuntu-latest
     steps:
 
@@ -27,5 +27,12 @@ jobs:
     - name: Test
       run: go test
 
-    - name: Build
-      run: go build -v -o gitignore .
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Pack with gitignores
+      run: packr build -v -o gitignore .
+
+
