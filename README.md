@@ -2,7 +2,9 @@
 
 This project is a golang cli for generating gitignore files.
 
-It utilizes a [fuzzy search](https://github.com/ktr0731/go-fuzzyfinder), [GitHubs gitignore files](https://github.com/github/gitignore) and [golang GitHub/Google synchronization client](https://github.com/google/go-github)
+- It utilizes a [fuzzy search](https://github.com/ktr0731/go-fuzzyfinder),
+- A full list of gitignore from [GitHubs gitignore files](https://github.com/github/gitignore)
+- A github synchronization client [golang GitHub/Google synchronization client](https://github.com/google/go-github)
 
 - [About](#about)
   - [Install](#install)
