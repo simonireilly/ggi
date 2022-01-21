@@ -17,13 +17,8 @@ jobs:
         with:
           go-version: 1.17
 
-      - uses: actions/checkout@v2
-        with:
-          repository: github/gitignore
-          path: ./gitignore
-
       - name: Remove .git from clone
-        run: rm -rf ./gitignore/.git
+        run: make ignores
 
       - name: Build
         run: go build -v ./...
