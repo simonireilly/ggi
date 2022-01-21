@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
+	"strings"
 
 	"github.com/gobuffalo/packr"
 	"github.com/ktr0731/go-fuzzyfinder"
@@ -17,28 +18,15 @@ type gitignore struct {
 }
 
 func main() {
-	// packr box holds byte strings for gitignores
-	box := packr.NewBox("./gitignores")
+	box := packr.NewBox("./gitignore")
 
-	// invoke a fuzzy search
 	gitignores := getGitignoreFiles(box)
 
 	idx := searchGitignores(gitignores)
 
 	c := []byte(gitignores[idx[0]].content)
 
-	// Write out the chosen gitignore
-	dir, err := os.Getwd()
-	if err != nil {
-		log.Fatal(err)
-		os.Exit(1)
-	}
-
-	err = ioutil.WriteFile(dir+"/.gitignore", c, 0644)
-	if err != nil {
-		log.Fatal(err)
-		os.Exit(1)
-	}
+	writeGitignoreFile(c)
 }
 
 // getGitignoreFiles needs to pack the binaries for the gitignores, fetch them from the box
@@ -48,12 +36,17 @@ func getGitignoreFiles(b packr.Box) []gitignore {
 	list := b.List()
 
 	for _, file := range list {
+		// Filter out non-gitignores
+		if !strings.HasSuffix(file, ".gitignore") {
+			continue
+		}
+
 		content, err := b.FindString(file)
 		if err != nil {
 			log.Fatal(err)
 		}
 
-		g = append(g, gitignore{name: file, content: string(content)})
+		g = append(g, gitignore{name: file, content: content})
 	}
 	return g
 }
@@ -80,4 +73,18 @@ func searchGitignores(g []gitignore) []int {
 	}
 
 	return idx
+}
+
+func writeGitignoreFile(c []byte) {
+	dir, err := os.Getwd()
+	if err != nil {
+		log.Fatal(err)
+		os.Exit(1)
+	}
+
+	err = ioutil.WriteFile(dir+"/.gitignore", c, 0644)
+	if err != nil {
+		log.Fatal(err)
+		os.Exit(1)
+	}
 }
