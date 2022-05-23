@@ -16,4 +16,4 @@ clean:
 
 .PHONY: local-install
 local-install: build
-	sudo mv go-gitignore-it /usr/local/bin/lggi
+	sudo mv go-gitignore-it /usr/local/bin/ggi

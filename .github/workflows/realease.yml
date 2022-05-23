@@ -30,6 +30,6 @@ jobs:
           goarch: ${{ matrix.goarch }}
           goversion: 1.18
           binary_name: ggi
-          extra_files: LICENSE README.md
+          extra_files: LICENSE
           pre_command: make deps
           build_command: make build

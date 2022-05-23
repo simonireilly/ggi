@@ -2,13 +2,13 @@
 
 This project is a golang cli for generating gitignore files.
 
-- It utilizes a [fuzzy search](https://github.com/ktr0731/go-fuzzyfinder),
-- A full list of gitignore from [GitHubs gitignore files](https://github.com/github/gitignore)
-
+![zsh Terminal using ggi to generate a gitignore](readme/ggi-in-action.gif)
 
 - [Go Gitignore It](#go-gitignore-it)
   - [Usage](#usage)
   - [Install](#install)
+  - [Development](#development)
+    - [Dependencies](#dependencies)
 
 ## Usage
 
@@ -19,3 +19,13 @@ ggi <search>
 ## Install
 
 >TODO: Generic install instructions for each platform
+
+
+## Development
+
+See [Makefile](./Makefile) for commands for testing and building.
+
+### Dependencies
+
+- It utilizes a [fuzzy search](https://github.com/ktr0731/go-fuzzyfinder),
+- It packs non go code using [packr](https://github.com/gobuffalo/packr)
