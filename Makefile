@@ -4,7 +4,7 @@ deps:
 
 .PHONY: build
 build:
-	packr2 build
+	packr2 build -o ggi
 
 .PHONY: test
 test:
@@ -16,4 +16,4 @@ clean:
 
 .PHONY: local-install
 local-install: build
-	sudo mv go-gitignore-it /usr/local/bin/ggi
+	sudo mv ggi /usr/local/bin/ggi
