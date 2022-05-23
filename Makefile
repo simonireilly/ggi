@@ -13,3 +13,7 @@ test:
 .PHONY: clean
 clean:
 	packr2 clean
+
+.PHONY: local-install
+local-install: build
+	sudo mv go-gitignore-it /usr/local/bin/lggi
