@@ -1,36 +1,31 @@
-# About
+# Go Gitignore It
 
 This project is a golang cli for generating gitignore files.
 
-- It utilizes a [fuzzy search](https://github.com/ktr0731/go-fuzzyfinder),
-- A full list of gitignore from [GitHubs gitignore files](https://github.com/github/gitignore)
-- A github synchronization client [golang GitHub/Google synchronization client](https://github.com/google/go-github)
+![zsh Terminal using ggi to generate a gitignore](readme/ggi-in-action.gif)
 
-- [About](#about)
+- [Go Gitignore It](#go-gitignore-it)
+  - [Usage](#usage)
   - [Install](#install)
-  - [Specification](#specification)
-  - [Design](#design)
+  - [Development](#development)
+    - [Dependencies](#dependencies)
+
+## Usage
+
+```bash
+ggi <search>
+```
 
 ## Install
 
+>TODO: Generic install instructions for each platform
 
 
-## Specification
+## Development
 
-1. We have a command go-gitignore-it that starts a session
-2. We can search through all the files available at `github/gitignore`
-3. We can combine multiple `gitiignore` files
-4. We can add our own gitignore files
-5. We can install globally ad run anywhere on the file system
+See [Makefile](./Makefile) for commands for testing and building.
 
-## Design
+### Dependencies
 
-1. A main function for running at the cli:
-2. A function for pulling gitignores and storing them:
-   1. Includes versioning
-   2. Stores locally
-   3. Works with latest when offline
-   4. cli ships with latest version and cli update command checks and pulls new versions
-3. A function for writing gitignore files:
-   1. It will mod/alert if existing `.gitignore` is present
-   2. It can be run in append only
+- It utilizes a [fuzzy search](https://github.com/ktr0731/go-fuzzyfinder),
+- It packs non go code using [packr](https://github.com/gobuffalo/packr)
