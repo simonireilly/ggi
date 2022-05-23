@@ -18,14 +18,14 @@ type gitignore struct {
 
 func main() {
 	// packr box holds byte strings for gitignores
-	box := packr.NewBox("./gitignores")
+	box := packr.NewBox("./gitignore")
 
 	// invoke a fuzzy search
-	gitignores := getGitignoreFiles(box)
+	gi := getGitignoreFiles(box)
 
-	idx := searchGitignores(gitignores)
+	idx := searchGitignores(gi)
 
-	c := []byte(gitignores[idx[0]].content)
+	c := []byte(gi[idx[0]].content)
 
 	// Write out the chosen gitignore
 	dir, err := os.Getwd()
