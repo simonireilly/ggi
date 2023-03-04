@@ -6,7 +6,6 @@ import (
 	"log"
 	"os"
 
-	"github.com/gobuffalo/packr"
 	"github.com/ktr0731/go-fuzzyfinder"
 
 	"github.com/simonireilly/go-gitignore-it/internal/ports"
@@ -18,12 +17,8 @@ type gitignore struct {
 	content string
 }
 
-func Run() {
-	// packr box holds byte strings for gitignores
-	box := packr.NewBox("./gitignore")
-
-	// invoke a fuzzy search
-	gi := getGitignoreFiles(box)
+func Run(b ports.FilesPort) {
+	gi := getGitignoreFiles(b)
 
 	idx := searchGitIgnores(gi)
 

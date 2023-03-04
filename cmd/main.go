@@ -1,7 +1,14 @@
 package main
 
-import "github.com/simonireilly/go-gitignore-it/internal/app"
+import (
+	"github.com/gobuffalo/packr"
+	"github.com/simonireilly/go-gitignore-it/internal/app"
+)
 
 func main() {
-	app.Run()
+	// Ports
+	b := packr.NewBox("./gitignore")
+
+	// Use case
+	app.Run(b)
 }
