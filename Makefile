@@ -4,7 +4,7 @@ deps:
 
 .PHONY: build
 build:
-	packr2 build -o ggi
+	packr2 build -o ggi/ ./cmd
 
 .PHONY: test
 test:

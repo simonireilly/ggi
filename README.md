@@ -2,7 +2,7 @@
 
 This project is a golang cli for generating gitignore files.
 
-![zsh Terminal using ggi to generate a gitignore](readme/ggi-in-action.gif)
+![zsh Terminal using ggi to generate a gitignore](.readme/ggi-in-action.gif)
 
 - [Go Gitignore It](#go-gitignore-it)
   - [Usage](#usage)
