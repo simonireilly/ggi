@@ -29,7 +29,7 @@ func main() {
 
 func convert_sym_to_regular(path string, info fs.FileInfo, err error) error {
 	if info.Mode().Type() == os.ModeSymlink {
-		fmt.Printf("Found symlink as %s", path)
+		fmt.Printf("Found symlink as '%s'\n", path)
 		// Follow link
 		l, err := filepath.EvalSymlinks(path)
 		if err != nil {
