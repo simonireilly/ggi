@@ -1,3 +1,4 @@
+// files implements ports.FilesPort using an embed file system wth go embed
 package files
 
 import (

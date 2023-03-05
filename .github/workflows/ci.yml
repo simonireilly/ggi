@@ -19,17 +19,5 @@ jobs:
         with:
           go-version: 1.18
 
-      - name: Install dependencies
-        run: make deps
-
-      - name: Generate embedable gitignore
-        run: make generate
-
-      - name: Generate test mocks
-        run: make mocks
-
-      - name: Test code
-        run: make test
-
-      - name: Build code
-        run: make build
+      - name: CI command
+        run: make ci

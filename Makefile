@@ -9,7 +9,7 @@ generate:
 
 .PHONY: mocks
 mocks:
-	mockgen -source=internal/ports/core.go >> mocks/ports/core.go
+	mockgen -source=internal/ports/core.go -destination=mocks/ports/core.go
 
 .PHONY: build
 build: generate
@@ -22,3 +22,6 @@ test:
 .PHONY: local-install
 local-install: build
 	sudo mv ggi /usr/local/bin/ggi
+
+.PHONY: ci
+ci: deps generate mocks test build
