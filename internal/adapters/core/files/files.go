@@ -2,6 +2,7 @@ package files
 
 import (
 	"embed"
+	"io/fs"
 	"log"
 	"path/filepath"
 )
@@ -16,12 +17,12 @@ func NewAdapter() *Adapter {
 //go:generate cp -r ../../../../gitignore ./gitignore
 //go:generate go run ../../../../tools/unpack_symlinks.go
 //go:embed gitignore/**/*.gitignore
-var fs embed.FS
+var efs embed.FS
 
 func (a Adapter) List() (out []string) {
 	root := "."
 
-	s, err := getAllFileNames(fs, root)
+	s, err := getAllFileNames(efs, root)
 
 	if err != nil {
 		log.Fatalf("Failed to open embedded gitignore files as '%s'\n: %v", root, err)
@@ -31,15 +32,20 @@ func (a Adapter) List() (out []string) {
 }
 
 func (a Adapter) FindString(s string) (string, error) {
-	return "file_name", nil
+	f, err := fs.ReadFile(efs, s)
+	if err != nil {
+		log.Fatalf("Failed to open file '%s'\n: %v", s, err)
+	}
+
+	return string(f), nil
 }
 
-func getAllFileNames(fs embed.FS, path string) (out []string, err error) {
+func getAllFileNames(efs embed.FS, path string) (out []string, err error) {
 	if len(path) == 0 {
 		path = "."
 	}
 
-	entries, err := fs.ReadDir(path)
+	entries, err := efs.ReadDir(path)
 
 	if err != nil {
 		log.Fatalf("Failed to open embedded gitignore files as '%s'\n: %v", path, err)
@@ -50,7 +56,7 @@ func getAllFileNames(fs embed.FS, path string) (out []string, err error) {
 		fp := filepath.Join(path, entry.Name())
 
 		if entry.IsDir() {
-			res, err := getAllFileNames(fs, fp)
+			res, err := getAllFileNames(efs, fp)
 			if err != nil {
 				log.Fatalf("Failed to open embedded gitignore files as '%s'\n: %v", fp, err)
 			}

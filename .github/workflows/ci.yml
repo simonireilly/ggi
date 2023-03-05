@@ -25,6 +25,9 @@ jobs:
       - name: Generate embedable gitignore
         run: make generate
 
+      - name: Generate test mocks
+        run: make mocks
+
       - name: Test code
         run: make test
 

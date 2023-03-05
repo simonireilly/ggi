@@ -1,24 +1,23 @@
 .PHONY: deps
 deps:
-	go install github.com/gobuffalo/packr/v2/packr2@v2.8.3
+	go install github.com/golang/mock/mockgen@v1.6.0
 	git submodule update --remote
 
 .PHONY: generate
 generate:
 	go generate ./internal/adapters/core/files/files.go
 
+.PHONY: mocks
+mocks:
+	mockgen -source=internal/ports/core.go >> mocks/ports/core.go
 
 .PHONY: build
 build: generate
-	packr2 build -o ggi/ ./cmd
+	go build -o ggi cmd/main.go
 
 .PHONY: test
 test:
 	go test -v ./...
-
-.PHONY: clean
-clean:
-	packr2 clean
 
 .PHONY: local-install
 local-install: build

@@ -1,4 +1,4 @@
-cl-# Changelog
+# Changelog
 
 All notable changes to this project will be documented in this file.
 
@@ -16,6 +16,8 @@ and this project adheres to [Semantic Versioning].
 ### Changed
 
 - Refactored to hexagonal architecture and structuring with https://github.com/golang-standards/project-layout
+- Remove [packr](https://github.com/gobuffalo/packr) as it is deprecated and [go embed](https://go.dev/blog/go1.16) replaces it
+- Usage of [mockgen](https://github.com/golang/mock) for creation of interface mocks added
 
 ### Deprecated
 

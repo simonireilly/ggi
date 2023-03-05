@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/gobuffalo/packr"
+	"github.com/simonireilly/go-gitignore-it/internal/adapters/core/files"
 	"github.com/simonireilly/go-gitignore-it/internal/app"
 	"github.com/simonireilly/go-gitignore-it/internal/ports"
 )
@@ -11,7 +11,7 @@ func main() {
 	var core ports.FilesPort
 
 	// Assign Adapters to ports
-	core = packr.NewBox("../gitignore")
+	core = files.NewAdapter()
 
 	// Use case
 	app.Run(core)

@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
+	"strings"
 
 	"github.com/ktr0731/go-fuzzyfinder"
 
@@ -59,7 +60,7 @@ func searchGitIgnores(g []gitignore) []int {
 	idx, err := fuzzyfinder.FindMulti(
 		g,
 		func(i int) string {
-			return g[i].name
+			return strings.ReplaceAll(g[i].name, "gitignore/", "")
 		},
 		fuzzyfinder.WithPreviewWindow(func(i, w, h int) string {
 			if i == -1 {
@@ -67,7 +68,7 @@ func searchGitIgnores(g []gitignore) []int {
 			}
 			return fmt.Sprintf(
 				"gitignore: %s \n---\n%s\n---",
-				g[i].name,
+				strings.ReplaceAll(g[i].name, "gitignore/", ""),
 				g[i].content,
 			)
 		}),

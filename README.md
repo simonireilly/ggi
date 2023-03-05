@@ -18,7 +18,7 @@ ggi <search>
 
 ## Install
 
->TODO: Generic install instructions for each platform
+Download the binary for you platform from releases and move the file to your `/usr/local/bin`
 
 
 ## Development
@@ -28,4 +28,3 @@ See [Makefile](./Makefile) for commands for testing and building.
 ### Dependencies
 
 - It utilizes a [fuzzy search](https://github.com/ktr0731/go-fuzzyfinder),
-- It packs non go code using [packr](https://github.com/gobuffalo/packr)
