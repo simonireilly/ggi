@@ -19,11 +19,5 @@ jobs:
         with:
           go-version: 1.18
 
-      - name: Test code
-        run: make test
-
-      - name: Install dependencies
-        run: make deps
-
-      - name: Build code
-        run: make build
+      - name: CI command
+        run: make ci

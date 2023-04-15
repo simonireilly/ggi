@@ -1,13 +1,15 @@
-package main
+package app
 
 import (
 	"fmt"
 	"io/ioutil"
 	"log"
 	"os"
+	"strings"
 
-	"github.com/gobuffalo/packr"
 	"github.com/ktr0731/go-fuzzyfinder"
+
+	"github.com/simonireilly/go-gitignore-it/internal/ports"
 )
 
 // gitignore - A struct that holds names and metadata for gitignore files
@@ -16,14 +18,10 @@ type gitignore struct {
 	content string
 }
 
-func main() {
-	// packr box holds byte strings for gitignores
-	box := packr.NewBox("./gitignore")
+func Run(b ports.FilesPort) {
+	gi := getGitignoreFiles(b)
 
-	// invoke a fuzzy search
-	gi := getGitignoreFiles(box)
-
-	idx := searchGitignores(gi)
+	idx := searchGitIgnores(gi)
 
 	c := []byte(gi[idx[0]].content)
 
@@ -43,7 +41,7 @@ func main() {
 
 // getGitignoreFiles needs to pack the binaries for the gitignores, fetch them from the box
 // then return them as a slice of []gitignore structs
-func getGitignoreFiles(b packr.Box) []gitignore {
+func getGitignoreFiles(b ports.FilesPort) []gitignore {
 	var g []gitignore
 	list := b.List()
 
@@ -58,11 +56,11 @@ func getGitignoreFiles(b packr.Box) []gitignore {
 	return g
 }
 
-func searchGitignores(g []gitignore) []int {
+func searchGitIgnores(g []gitignore) []int {
 	idx, err := fuzzyfinder.FindMulti(
 		g,
 		func(i int) string {
-			return g[i].name
+			return strings.ReplaceAll(g[i].name, "gitignore/", "")
 		},
 		fuzzyfinder.WithPreviewWindow(func(i, w, h int) string {
 			if i == -1 {
@@ -70,7 +68,7 @@ func searchGitignores(g []gitignore) []int {
 			}
 			return fmt.Sprintf(
 				"gitignore: %s \n---\n%s\n---",
-				g[i].name,
+				strings.ReplaceAll(g[i].name, "gitignore/", ""),
 				g[i].content,
 			)
 		}),
