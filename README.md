@@ -1,4 +1,4 @@
-# Go Gitignore It
+# Ignore
 
 This project is a golang cli for generating gitignore files.
 
@@ -13,13 +13,12 @@ This project is a golang cli for generating gitignore files.
 ## Usage
 
 ```bash
-ggi <search>
+ignore <search>
 ```
 
 ## Install
 
 Download the binary for you platform from releases and move the file to your `/usr/local/bin`
-
 
 ## Development
 
